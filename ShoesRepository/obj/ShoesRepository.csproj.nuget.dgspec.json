@@ -1,0 +1,238 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesRepository\\ShoesRepository.csproj": {}
+  },
+  "projects": {
+    "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj",
+        "projectName": "DataAcess",
+        "projectPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj",
+        "packagesPath": "C:\\Users\\Shyam Nepal\\.nuget\\packages\\",
+        "outputPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shyam Nepal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesRepository\\ShoesRepository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesRepository\\ShoesRepository.csproj",
+        "projectName": "ShoesRepository",
+        "projectPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesRepository\\ShoesRepository.csproj",
+        "packagesPath": "C:\\Users\\Shyam Nepal\\.nuget\\packages\\",
+        "outputPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesRepository\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shyam Nepal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj": {
+                "projectPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj"
+              },
+              "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesShared\\ShoesShared.csproj": {
+                "projectPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesShared\\ShoesShared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesShared\\ShoesShared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesShared\\ShoesShared.csproj",
+        "projectName": "ShoesShared",
+        "projectPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesShared\\ShoesShared.csproj",
+        "packagesPath": "C:\\Users\\Shyam Nepal\\.nuget\\packages\\",
+        "outputPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\ShoesShared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shyam Nepal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj": {
+                "projectPath": "C:\\asp.net mvc test Project\\console App\\shoes_test\\Ecommerce_shoes\\DataAcess\\DataAcess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.7.33, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
