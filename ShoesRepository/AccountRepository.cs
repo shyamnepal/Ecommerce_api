@@ -1,4 +1,5 @@
-﻿using Azure;
+﻿
+using Azure;
 using Azure.Core;
 using DataAcess.Entity;
 using DataAcess.ViewModel;
@@ -35,9 +36,9 @@ namespace ShoesRepository
         public AccountRepository(UserManager<DataAcess.Entity.User> userManager,
             IConfiguration configuration,
             ShoesEcommerceContext dbContext,
-            RoleManager<IdentityRole> roleManger, 
-            SignInManager<DataAcess.Entity.User> signInManager, 
-            IConfiguration config, 
+            RoleManager<IdentityRole> roleManger,
+            SignInManager<DataAcess.Entity.User> signInManager,
+            IConfiguration config,
             IMailServices sendMail,
             ILogger<AccountRepository> logger
             )
@@ -95,117 +96,106 @@ namespace ShoesRepository
                 response.Status = _config["Response:FailedStatus"];
                 _logger.LogError($"failed to login the application at CheckPasswordAsync and username is {checkUser.UserName} ");
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 _logger.LogCritical($"error message: {ex.Message} stackTrace: {ex.StackTrace} innerexception: {ex.InnerException}");
             }
-            
+
             return response;
         }
 
         public async Task<ShoesResponse> UserRegister(DataAcess.ViewModel.UserViewModel model, string role)
         {
             var response = new ShoesResponse();
-          
-                var userExists = await _userManager.FindByNameAsync(model.UserName);
-                if (userExists != null)
-                {
-                    _logger.LogWarning($"This user {userExists.UserName} is already exist");
-                    response.Message = "User Already Exists";
-                    response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
-                    response.Status = _config["Response:FailedStatus"];
-                    return response;
-                }
 
-                var emailExists = await _userManager.FindByEmailAsync(model.Email);
-                if (emailExists != null)
-                {
-                    _logger.LogWarning($"This Email {userExists.Email} is already exist");
-                    response.Message = "Email Already Exists";
-                    response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
-                    response.Status = _config["Response:FailedStatus"];
-                    return response;
-                }
-
-                var user = new DataAcess.Entity.User()
-                {
-                    UserName = model.UserName,
-                    Email = model.Email,
-                    Address = model.Address,
-
-
-
-
-                };
-
-                //var passwordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
-                //user.PasswordHash = passwordHash;
-
-                using (var transaction = await _dbContext.Database.BeginTransactionAsync())
-                {
-                   
-                        var createUserResult = await _userManager.CreateAsync(user, model.Password);
-
-                        if (!createUserResult.Succeeded)
-                        {
-                        _logger.LogError($"User {user.UserName} is faild to create");
-                            response.Message = "User creation failed. Check user details and try again.";
-                            response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
-                            return response;
-                        }
-                        var verifyCode = GenerateVerificationCode();
-                        var verification = new UserVerification
-                        {
-                            UserId = user.Id,
-                            VerificationCode = verifyCode,
-                            IsVerified = false,
-                            VerificationCodeExpiration = DateTime.UtcNow.AddMinutes(30) // Set expiration time
-                        };
-                        // Save the verification code in the database. 
-                        _dbContext.UserVerifications.Add(verification);
-                        _dbContext.SaveChanges();
-
-                        // send verification code in email
-                        _sendMail.SendMail(user.Email, verifyCode);
-
-
-                        if (!await _roleManager.RoleExistsAsync(role))
-                        {
-                            await _roleManager.CreateAsync(new IdentityRole(role));
-                        }
-
-                        if (await _roleManager.RoleExistsAsync(role))
-                        {
-
-                            await _userManager.AddToRoleAsync(user, role);
-                        }
-
-                        await transaction.CommitAsync();
-                    _logger.LogInformation($"Code is send to your email: {user.Email}");
-                        response.Message = "verify 6 digit code";
-                        response.ErrorCode = int.Parse(_config["Response:SuccessCode"]);
-                        response.Status = _config["Response:SuccessStatus"];
-                    response.Data = user.Id;
-                        return response;
-                    
-                    
-                       
-                    
-                }
-
-            }
-            catch(Exception ex)
+            var userExists = await _userManager.FindByNameAsync(model.UserName);
+            if (userExists != null)
             {
-                _logger.LogCritical($"error message: {ex.Message} stackTrace: {ex.StackTrace} innerexception: {ex.InnerException}");
-                response.Errormessage = "An error occurred during user creation.";
+                _logger.LogWarning($"This user {userExists.UserName} is already exist");
+                response.Message = "User Already Exists";
                 response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
-                response.Status= _config["Response:SuccessStatus"];
+                response.Status = _config["Response:FailedStatus"];
                 return response;
             }
-            
-           
 
-            
+            var emailExists = await _userManager.FindByEmailAsync(model.Email);
+            if (emailExists != null)
+            {
+                _logger.LogWarning($"This Email {userExists.Email} is already exist");
+                response.Message = "Email Already Exists";
+                response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
+                response.Status = _config["Response:FailedStatus"];
+                return response;
+            }
+
+            var user = new DataAcess.Entity.User()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                Address = model.Address,
+
+
+
+
+            };
+
+            //var passwordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+            //user.PasswordHash = passwordHash;
+
+            using (var transaction = await _dbContext.Database.BeginTransactionAsync())
+            {
+
+                var createUserResult = await _userManager.CreateAsync(user, model.Password);
+
+                if (!createUserResult.Succeeded)
+                {
+                    _logger.LogError($"User {user.UserName} is faild to create");
+                    response.Message = "User creation failed. Check user details and try again.";
+                    response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
+                    return response;
+                }
+                var verifyCode = GenerateVerificationCode();
+                var verification = new UserVerification
+                {
+                    UserId = user.Id,
+                    VerificationCode = verifyCode,
+                    IsVerified = false,
+                    VerificationCodeExpiration = DateTime.UtcNow.AddMinutes(30) // Set expiration time
+                };
+                // Save the verification code in the database. 
+                _dbContext.UserVerifications.Add(verification);
+                _dbContext.SaveChanges();
+
+                // send verification code in email
+                _sendMail.SendMail(user.Email, verifyCode);
+
+
+                if (!await _roleManager.RoleExistsAsync(role))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(role));
+                }
+
+                if (await _roleManager.RoleExistsAsync(role))
+                {
+
+                    await _userManager.AddToRoleAsync(user, role);
+                }
+
+                await transaction.CommitAsync();
+                _logger.LogInformation($"Code is send to your email: {user.Email}");
+                response.Message = "verify 6 digit code";
+                response.ErrorCode = int.Parse(_config["Response:SuccessCode"]);
+                response.Status = _config["Response:SuccessStatus"];
+                response.Data = user.Id;
+                return response;
+
+
+
+
+            }
+
+
+
         }
 
 
@@ -216,7 +206,7 @@ namespace ShoesRepository
                 var issuer = _config["Jwt:Issuer"];
                 var audience = _config["Jwt:Audience"];
                 var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
-                var roles =  _userManager.GetRolesAsync(model).Result;
+                var roles = _userManager.GetRolesAsync(model).Result;
 
                 var claims = new List<Claim>
                 {
@@ -232,7 +222,7 @@ namespace ShoesRepository
                 var tokenDescription = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(claims),
-                   
+
                     Expires = DateTime.UtcNow.AddMinutes(5),
                     Issuer = issuer,
                     Audience = audience,
@@ -296,12 +286,12 @@ namespace ShoesRepository
                 response.Status = _config["Response:SuccessStatus"];
                 response.ErrorCode = int.Parse(_config["Response:SuccessCode"]);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"Message: {ex.Message} InnerException: {ex.InnerException} StackTrace: {ex.StackTrace}");
             }
-          
-            return response; 
+
+            return response;
 
         }
 

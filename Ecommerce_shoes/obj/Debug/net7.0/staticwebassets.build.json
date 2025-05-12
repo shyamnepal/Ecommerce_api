@@ -1,0 +1,29 @@
+{
+  "Version": 1,
+<<<<<<< HEAD
+  "Hash": "30gsTENyv9pq/qHXyfBLcVhLPfGRAQSikebgTK9gyFo=",
+=======
+  "Hash": "u0JjxXbMPiyJmHF6bYWv9nRWixDWILungHTDn5Of9DA=",
+>>>>>>> 31234893c794cdaf4db9fdda9f59a7cf8a99fb46
+  "Source": "Ecommerce_shoes",
+  "BasePath": "_content/Ecommerce_shoes",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+<<<<<<< HEAD
+  "DiscoveryPatterns": [
+    {
+      "Name": "Ecommerce_shoes\\wwwroot",
+      "Source": "Ecommerce_shoes",
+      "ContentRoot": "C:\\API_folder\\Ecommerce_api-master\\Ecommerce_shoes\\wwwroot\\",
+      "BasePath": "_content/Ecommerce_shoes",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+=======
+  "DiscoveryPatterns": [],
+  "Assets": []
+>>>>>>> 31234893c794cdaf4db9fdda9f59a7cf8a99fb46
+}
