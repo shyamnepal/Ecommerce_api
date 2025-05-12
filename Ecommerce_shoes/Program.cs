@@ -35,7 +35,7 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IConnectionMultiplexer>(c =>
 {
     var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
-    return ConnectionMultiplexer.Connect(configuration);
+return ConnectionMultiplexer.Connect(configuration);
 
 });
 //builder.Services.AddStackExchangeRedisCache(options =>
@@ -136,7 +136,7 @@ builder.Services.AddSwaggerGen(opt =>
                 {
                     Type=ReferenceType.SecurityScheme,
                     Id="ApiKey"
-                }
+        }
             },
             new string[]{}
         }

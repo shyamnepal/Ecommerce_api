@@ -191,7 +191,18 @@ namespace ShoesRepository
                     
                        
                     
-                } 
+                }
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogCritical($"error message: {ex.Message} stackTrace: {ex.StackTrace} innerexception: {ex.InnerException}");
+                response.Errormessage = "An error occurred during user creation.";
+                response.ErrorCode = int.Parse(_config["Response:ErrorCode"]);
+                response.Status= _config["Response:SuccessStatus"];
+                return response;
+            }
+            
            
 
             

@@ -11,7 +11,7 @@ namespace DataAcess.Entity.OrderAggregate
     {
         public OrderItem()
         {
-
+            
         }
         public OrderItem(ProductItemOrdered itemOrderd, decimal? price, int quantity)
         {

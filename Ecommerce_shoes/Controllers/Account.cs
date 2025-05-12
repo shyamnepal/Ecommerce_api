@@ -50,7 +50,15 @@ namespace Ecommerce_shoes.Controllers
         public async Task<IActionResult> Login(LoginUserViewModel model)
         {
             var response =new ShoesResponse();
-            response = await _acountService.Login(model);
+            try
+            {
+                response = await _acountService.Login(model);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while login the applicaiton");
+            }         
+             
             return Ok(response);
         }
         [HttpPost("VerifyAccount")]

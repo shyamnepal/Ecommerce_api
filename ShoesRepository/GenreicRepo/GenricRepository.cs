@@ -28,9 +28,18 @@ namespace ShoesRepository.GenreicRepo
 
         public async Task AddRangeAsync(List<TEntity> entities)
         {
+            try
+            {
                  _context.Set<TEntity>().AddRange(entities);
                  _context.SaveChanges();
             
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (consider using a logging framework)
+                // Handle the exception as needed (e.g., rethrow, return a result, etc.)
+                throw;
+            }
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate,

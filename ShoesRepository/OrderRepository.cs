@@ -66,14 +66,15 @@ namespace ShoesRepository
             // 3. Lookup delivery
             var deliveryMethod = await _deliveryRepo.GetByIdAsync(deliveryMethodId)
                 ?? throw new KeyNotFoundException($"Delivery method {deliveryMethodId} not found.");
-
+            
             // 4. Calculate subtotal
             var subtotal = items.Sum(x => x.Price * x.Quantity);
 
             // ✅ Ensure the address is added to the database
             shippingAddress.AddressId = 0; // ✅ Reset ID to trigger auto-generation
             await _addressRepo.Add(shippingAddress);
-
+                
+            }
 
             // ✅ Step: create payment intent via your payment service
             var paymentIntentDto = await _paymentService.CreateOrUpdatePaymentIntent(basketId);
